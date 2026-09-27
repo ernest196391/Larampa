@@ -1,0 +1,10 @@
+create table public.categories(id uuid primary key default gen_random_uuid(),name text not null,slug text unique not null,sort_order int not null default 0,is_active boolean not null default true,image_url text);
+create table public.menu_items(id uuid primary key default gen_random_uuid(),category_id uuid not null references public.categories(id) on delete cascade,name text not null,slug text unique not null,description text,portion text,price_cup numeric,price_usd numeric,image_url text,alt_text text,is_featured boolean not null default false,is_available boolean not null default true,is_demo boolean not null default true,badge text,sort_order int not null default 0,created_at timestamptz not null default now(),updated_at timestamptz not null default now());
+create table public.site_settings(key text primary key,value jsonb not null default '{}'::jsonb);
+alter table public.categories enable row level security;alter table public.menu_items enable row level security;alter table public.site_settings enable row level security;
+create policy "Public reads active categories" on public.categories for select to anon,authenticated using(is_active=true);
+create policy "Public reads available items" on public.menu_items for select to anon,authenticated using(is_available=true);
+create policy "Public reads settings" on public.site_settings for select to anon,authenticated using(true);
+create policy "Admins manage categories" on public.categories for all to authenticated using((select auth.jwt()->'app_metadata'->>'role')='admin') with check((select auth.jwt()->'app_metadata'->>'role')='admin');
+create policy "Admins manage items" on public.menu_items for all to authenticated using((select auth.jwt()->'app_metadata'->>'role')='admin') with check((select auth.jwt()->'app_metadata'->>'role')='admin');
+create policy "Admins manage settings" on public.site_settings for all to authenticated using((select auth.jwt()->'app_metadata'->>'role')='admin') with check((select auth.jwt()->'app_metadata'->>'role')='admin');
