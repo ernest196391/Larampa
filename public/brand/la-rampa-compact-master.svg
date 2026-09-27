@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 260" role="img" aria-labelledby="logo-title logo-desc">
+  <title id="logo-title">La Rampa</title>
+  <desc id="logo-desc">Versión compacta del logotipo La Rampa</desc>
+  <g fill="#173f33">
+    <text x="230" y="118" font-family="Z003, cursive" font-size="114" font-weight="700" font-style="italic" transform="skewX(-8)">La</text>
+    <text x="48" y="218" font-family="Nimbus Sans, Helvetica, Arial, sans-serif" font-size="130" font-weight="700" font-style="italic" letter-spacing="-9" transform="skewX(-7)">Rampa</text>
+    <path d="M18 123 L198 111 L193 125 L16 139 Z"/>
+    <path d="M430 126 L602 109 L599 124 L430 143 Z"/>
+    <path d="M22 238 L342 225 L338 239 L18 252 Z"/>
+    <path d="M432 232 L602 221 L599 235 L428 247 Z"/>
+  </g>
+</svg>

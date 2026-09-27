@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 760 400" role="img" aria-labelledby="logo-title logo-desc">
+  <title id="logo-title">La Rampa</title>
+  <desc id="logo-desc">Logotipo de Cafetería Coffee Shop La Rampa, reconstruido a partir del rótulo del establecimiento</desc>
+  <defs>
+    <path id="descriptor-arc" d="M112 180 C225 8 542 8 675 174"/>
+  </defs>
+  <g fill="#173f33">
+    <text font-family="Nimbus Sans, Helvetica, Arial, sans-serif" font-size="38" font-weight="700" letter-spacing="3.2">
+      <textPath xlink:href="#descriptor-arc" startOffset="50%" text-anchor="middle">CAFETERÍA · COFFEE SHOP</textPath>
+    </text>
+    <text x="278" y="224" font-family="Z003, cursive" font-size="152" font-weight="700" font-style="italic" transform="skewX(-8)">La</text>
+    <text x="68" y="330" font-family="Nimbus Sans, Helvetica, Arial, sans-serif" font-size="154" font-weight="700" font-style="italic" letter-spacing="-10" transform="skewX(-7)">Rampa</text>
+    <path d="M34 219 L262 204 L256 220 L31 237 Z"/>
+    <path d="M515 225 L735 203 L731 219 L516 243 Z"/>
+    <path d="M35 359 L422 343 L418 357 L31 376 Z"/>
+    <path d="M523 350 L735 336 L732 351 L520 367 Z"/>
+  </g>
+</svg>
