@@ -1,3 +1,21 @@
-"use client";import {useState} from "react";import {categories} from "@/data/menu";import {Eye,EyeOff,LogOut,Save} from "lucide-react";
-export default function Admin(){const [ok,setOk]=useState(false);const [email,setEmail]=useState("");const [pass,setPass]=useState("");const [saved,setSaved]=useState(false);if(!ok)return <main className="adminLogin"><a className="brand dark" href="/"><span>CAFETERÍA · COFFEE SHOP</span><b>La Rampa</b></a><form onSubmit={e=>{e.preventDefault();if(email&&pass)setOk(true)}}><p className="kicker">Panel administrativo</p><h1>Gestiona la carta</h1><p>Acceso administrativo temporal.</p><label>Correo<input type="email" value={email} onChange={e=>setEmail(e.target.value)} required/></label><label>Contraseña<input type="password" value={pass} onChange={e=>setPass(e.target.value)} required/></label><button>Entrar</button></form></main>;
-return <main className="admin"><header><div><p className="kicker">La Rampa</p><h1>Contenido de la carta</h1></div><div><a href="/" target="_blank"><Eye size={17}/> Vista pública</a><button onClick={()=>setOk(false)}><LogOut size={17}/> Salir</button></div></header><aside><b>Resumen</b><span>{categories.length} categorías</span><span>{categories.reduce((n,c)=>n+c.items.length,0)} productos</span><span>4 destacados</span></aside><section><div className="adminHead"><div><h2>Productos</h2><p>Edita precios y disponibilidad.</p></div><button onClick={()=>{setSaved(true);setTimeout(()=>setSaved(false),1800)}}><Save size={17}/>{saved?"Cambios guardados":"Guardar cambios"}</button></div>{categories.map(c=><details key={c.id} open={c.id==="desayunos"}><summary>{c.name}<span>{c.items.length}</span></summary>{c.items.map(i=><div className="adminRow" key={i.name+i.portion}><div><b>{i.name}</b><small>{i.portion||"Sin porción"}</small></div><label>CUP<input defaultValue={i.cup}/></label><label>USD<input defaultValue={i.usd}/></label><button title="Disponibilidad"><EyeOff size={18}/></button></div>)}</details>)}</section></main>}
+import Image from "next/image";
+import Link from "next/link";
+import {categories, featured} from "@/data/menu";
+
+export const metadata = {title: "Vista administrativa | La Rampa", robots: {index: false, follow: false}};
+
+export default function AdminPage() {
+  const productCount = categories.reduce((total, category) => total + category.items.length, 0);
+  return <main className="adminDemo">
+    <div className="adminBanner"><strong>Modo demostración</strong><span>Esta vista no guarda cambios todavía. La estructura está preparada para conectarse a un proyecto Supabase dedicado.</span></div>
+    <div className="adminShell">
+      <aside className="adminSide"><Image src="/brand/la-rampa-white.svg" alt="La Rampa" width={520} height={180} className="logo"/><nav aria-label="Secciones administrativas"><button className="active">Resumen</button><button>Productos</button><button>Categorías</button><button>Destacados</button><button>Fotografías</button><button>Configuración</button></nav></aside>
+      <section className="adminMain">
+        <header className="adminTop"><div><p className="eyebrow">Centro de control</p><h1>Resumen de la carta</h1></div><Link href="/">Ver carta pública</Link></header>
+        <div className="stats"><div className="stat"><strong>{categories.length}</strong><span>Categorías</span></div><div className="stat"><strong>{productCount}</strong><span>Productos</span></div><div className="stat"><strong>{featured.length}</strong><span>Destacados</span></div></div>
+        <p className="adminNote">Los controles aparecen desactivados para evitar simular un guardado inexistente. Al conectar Supabase, esta misma interfaz gestionará precios CUP/USD, disponibilidad y contenido.</p>
+        {categories.map((category) => <details key={category.id} open={category.id === "desayunos"}><summary><span>{category.name}</span><small>{category.items.length} productos</small></summary><div className="adminRows">{category.items.map((item) => <div className="adminRow" key={`${item.name}-${item.portion ?? ""}`}><div><strong>{item.name}</strong><small>{item.portion ?? "Sin porción indicada"}</small></div><label>CUP<input value={item.cup} readOnly aria-label={`Precio CUP de ${item.name}`}/></label><label>USD<input value={item.usd} readOnly aria-label={`Precio USD de ${item.name}`}/></label><span className="statusPill">Disponible</span></div>)}</div></details>)}
+      </section>
+    </div>
+  </main>;
+}

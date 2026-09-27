@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" role="img" aria-labelledby="title desc">
+  <title id="title">La Rampa</title><desc id="desc">Logotipo compacto de La Rampa</desc>
+  <g fill="#173f33">
+    <text x="18" y="82" font-family="Georgia,Times New Roman,serif" font-size="63" font-weight="700" font-style="italic" letter-spacing="-4">La Rampa</text>
+    <path d="M20 94c68 9 158 7 254-14-57 25-155 37-257 26z"/>
+  </g>
+</svg>
