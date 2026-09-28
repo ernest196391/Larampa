@@ -26,3 +26,9 @@
 
 @media(max-width:680px){.heroCopy{bottom:42px}}
 @media(max-width:370px){.heroCopy{bottom:34px}}
+
+/* Simplifica la jerarquía visual: los títulos ya explican cada sección. */
+.eyebrow{display:none}
+.heroCopy{bottom:68px}
+@media(max-width:680px){.heroCopy{bottom:58px}}
+@media(max-width:370px){.heroCopy{bottom:50px}}
