@@ -33,8 +33,10 @@ function ProductRow({item, categoryId, expanded, onToggle}: {item: MenuItem; cat
 }
 
 function Logo({white = false, compact = false}: {white?: boolean; compact?: boolean}) {
-  const src = white ? "/brand/la-rampa-white.svg" : compact ? "/brand/la-rampa-compact.svg" : "/brand/la-rampa-primary.svg";
-  return <Image src={src} alt="La Rampa · Cafetería Coffee Shop" width={compact ? 300 : 520} height={compact ? 120 : 180} priority className="logo"/>;
+  const src = compact
+    ? white ? "/brand/la-rampa-compact-white.svg" : "/brand/la-rampa-compact.svg"
+    : white ? "/brand/la-rampa-white.svg" : "/brand/la-rampa-primary.svg";
+  return <Image src={src} alt="La Rampa · Cafetería Coffee Shop" width={compact ? 740 : 760} height={compact ? 320 : 438} priority className="logo"/>;
 }
 
 export default function Menu() {
