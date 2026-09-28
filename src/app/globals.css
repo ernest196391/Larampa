@@ -23,3 +23,6 @@
 .brandLogo{width:154px;height:64px}.brandLogo .logo{display:block;width:154px;height:auto}
 @media(max-width:680px){.brandLogo,.brandLogo .logo{width:142px}.heroLogo{width:184px;margin-bottom:4px}}
 @media(max-width:370px){.heroLogo{width:166px}}
+
+@media(max-width:680px){.heroCopy{bottom:42px}}
+@media(max-width:370px){.heroCopy{bottom:34px}}
