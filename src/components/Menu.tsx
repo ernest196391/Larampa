@@ -90,7 +90,20 @@ export default function Menu() {
 
   function goToCategory(id: string) {
     setCategoriesOpen(false);
-    document.getElementById(id)?.scrollIntoView({behavior: "smooth"});
+    setSearchOpen(false);
+
+    // Wait for any open sheet/modal to unmount before calculating the target position.
+    // Using window.scrollTo is more reliable than scrollIntoView on older Android/Xiaomi browsers.
+    window.setTimeout(() => {
+      const target = document.getElementById(id);
+      if (!target) return;
+      const header = document.querySelector<HTMLElement>(".topbar");
+      const offset = (header?.offsetHeight ?? 76) + 16;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({top: Math.max(0, top), behavior: "smooth"});
+      window.history.replaceState(null, "", `#${id}`);
+      setActive(id);
+    }, 60);
   }
 
   return <>
